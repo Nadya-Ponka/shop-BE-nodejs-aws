@@ -9,11 +9,40 @@ provider:
 plugins:
   - serverless-webpack
   - serverless-offline
+  - serverless-openapi-documentation
+
 custom:
   webpack:
     webpackConfig: 'webpack.config.js'
     includeModules: true
     dotenvVars: ${file(configs.js)}
+  documentation:
+    version: '1'
+    title: 'Emotions shop backend'
+    description: 'Emotions shop backend documentation'
+    models: 
+      - name: GetProductRequest
+        description: GET Product by Id request model (http://localhost:3000/dev/products/{productId})
+        contentType: application/json
+        schema:
+          $schema: http://json-schema.org/draft-04/schema#
+          properties:
+            SomeObject:
+              type: object
+              properties:
+                SomeAttribute:
+                  type: string
+      - name: GetAllProductsRequest
+        description: GET All Products request model (http://localhost:3000/dev/products)
+        contentType: application/json
+        schema:
+          $schema: http://json-schema.org/draft-04/schema#
+          properties:
+            SomeObject:
+              type: object
+              properties:
+                SomeAttribute:
+                  type: string
 
 functions:
   getProductById:
@@ -27,6 +56,31 @@ functions:
             parameters:
               paths:
                 productId: true
+          documentation:
+            summary: "Get product by Id from the products list"
+            description: "Get product by Id from the products list"
+            requestBody:
+              description: "A product information object"
+            requestModels:
+              application/json: "GetProductRequest"
+            pathParams:
+              - name: "productId"
+                description: "Id of the product"
+                schema:
+                  type: "string"
+                  pattern: "^[-a-z0-9_]+$"
+            methodResponses:
+              - statusCode: 200
+                responseBody:
+                  description: "A product along with passed id"
+                responseModels:
+                  application/json: "GetDocumentResponse"
+              - statusCode: 500
+                responseBody:
+                  description: "An error message 'Product not found'"
+                responseModels:
+                  application/json: "ErrorResponse"
+
   getAllProducts:
     handler: handler.getAllProducts
     events:
@@ -34,3 +88,4 @@ functions:
           path: products
           method: get
           cors: true
+          
