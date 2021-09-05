@@ -6,7 +6,7 @@ import { APIGatewayProxyHandler } from 'aws-lambda';
 import { ProductInterface } from './inrerface';
 
 export const getProductById: APIGatewayProxyHandler = async (event) => {
-	console.log('GET PRODUCT BY ID  EVENT: ', event);
+	console.log('GET PRODUCT BY ID EVENT: ', event);
 
 	try {
 		const { productId = '' } = event.pathParameters;
