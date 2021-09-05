@@ -39,6 +39,9 @@ import { getAllProductsFromDatabase } from './PostgresProductService';
 // }
 
 export const getAllProducts: APIGatewayProxyHandler = async (event) => {
+
+	console.log('GET ALL PRODUCTS EVENT: ', event);
+
 	try {
 		const products = await getAllProductsFromDatabase();
 		return {
@@ -56,7 +59,7 @@ export const getAllProducts: APIGatewayProxyHandler = async (event) => {
 				'Access-Control-Allow-Origin': '*',
 				'Access-Control-Allow-Credentials': true
 			},
-			body: JSON.stringify({ message: error })
+			body: JSON.stringify({ message: 'Unhandled error' })
 		}
 	}
 }

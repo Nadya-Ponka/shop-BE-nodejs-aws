@@ -6,6 +6,7 @@ import { APIGatewayProxyHandler } from 'aws-lambda';
 import { ProductInterface } from './inrerface';
 
 export const getProductById: APIGatewayProxyHandler = async (event) => {
+	console.log('GET PRODUCT BY ID  EVENT: ', event);
 
 	try {
 		const { productId = '' } = event.pathParameters;
@@ -34,7 +35,7 @@ export const getProductById: APIGatewayProxyHandler = async (event) => {
 				'Access-Control-Allow-Origin': '*',
 				'Access-Control-Allow-Credentials': true
 			},
-			body: JSON.stringify({ message: error })
+			body: JSON.stringify({ message: 'Unhandled error' })
 		}
 	}
 }
