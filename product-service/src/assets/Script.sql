@@ -42,17 +42,3 @@
 --delete from product_model where product_model.title='Surprise' and product_model.description='Emotion of Surprise' and product_model.price=7
 
 -- delete from stock_model where stock_model.product_id='238ae75f-cbf8-4ed7-bd59-debe94926d93'
-
-
--- fetch('/dev/products', {
---     method: 'POST',
---     headers: {
---         'Content-Type': 'application/json'
---     },
---     body: JSON.stringify({
---         title: 'Surprise',
---         description: 'Emotion of Surprise',
---         price: 7,
---         count: 12
---     })
--- });
