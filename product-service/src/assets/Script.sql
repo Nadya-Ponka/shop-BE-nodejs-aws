@@ -1,11 +1,11 @@
+--create extension if not exists "uuid-ossp";
+
 --create table Product_model (
 --	id uuid primary key default uuid_generate_v4(),
 --    title text,
 --    description text,
 --    price integer
 --)
-
---create extension if not exists "uuid-ossp";
 
 --create table stock_model (
 --	product_id uuid primary key default uuid_generate_v4(),
@@ -41,7 +41,7 @@
 
 --delete from product_model where product_model.title='Surprise' and product_model.description='Emotion of Surprise' and product_model.price=7
 
-delete from stock_model where stock_model.product_id='238ae75f-cbf8-4ed7-bd59-debe94926d93'
+-- delete from stock_model where stock_model.product_id='238ae75f-cbf8-4ed7-bd59-debe94926d93'
 
 
 -- fetch('/dev/products', {
