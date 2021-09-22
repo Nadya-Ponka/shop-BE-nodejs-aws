@@ -19,7 +19,6 @@ export const importProductsFile = async (event) => {
 		};
 
 		url = await s3.getSignedUrlPromise('putObject', params);
-		console.log('SIGNED URL: ', url);
 	} catch(error) {
 		console.error(error);
 		status = 500;

@@ -11,7 +11,7 @@
     "outDir": "lib",
     "esModuleInterop": true
   },
-  "include": ["src/**/*.ts", "serverless.ts", "handler.ts", "src/functions/getProductById.test.js"],
+  "include": ["src/**/*.ts", "serverless.ts", "handler.ts", "src/functions/importProductsFile.test.js", "src/functions/importProductsFile.ts"],
   "exclude": [
     "node_modules/**/*",
     ".serverless/**/*",
