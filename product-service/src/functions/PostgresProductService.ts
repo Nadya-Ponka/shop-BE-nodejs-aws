@@ -6,14 +6,14 @@ import { ProductInterface } from './inrerface';
 const { PGHOST, PGUSER, PGDATABASE, PGPASSWORD, PGPORT } = process.env;
 const dbOptions = {
 	host: PGHOST,
-	port: PGPORT,
+	port: 5432,
 	database: PGDATABASE,
 	user: PGUSER,
 	password: PGPASSWORD,
 	ssl: {
 		rejectUnauthorized: false
 	},
-	connectionTimeoutMillis: 5000
+	connectionTimeoutMillis: 20000
 };
 
 export const getAllProductsFromDatabase = async () => {
@@ -42,9 +42,9 @@ export const createNewProduct = async (dataObject: ProductInterface) => {
 		await client.connect();
 		await client.query('BEGIN');
 	
-		let result = await client.query(`insert into product_model (title, description, price) values ('${dataObject.title}','${dataObject.description}',${ dataObject.price})`);
-		const productId = await client.query(`SELECT * FROM product_model WHERE product_model.title='${dataObject.title}' and product_model.description='${dataObject.description}' and product_model.price=${dataObject.price}`);
-		result = await client.query(`insert into stock_model (product_id, count) values ('${productId.rows[0].id}',${dataObject.count})`);
+		let result = await client.query(`insert into product_model (title, description, price) values ('${dataObject.title}','${dataObject.description}',${Number(dataObject.price)})`);
+		const productId = await client.query(`SELECT * FROM product_model WHERE product_model.title='${dataObject.title}' and product_model.description='${dataObject.description}' and product_model.price=${Number(dataObject.price)}`);
+		result = await client.query(`insert into stock_model (product_id, count) values ('${productId.rows[0].id}',${Number(dataObject.count)})`);
 	
 		await client.query('COMMIT');
 		return { message: 'everithing is OK' };

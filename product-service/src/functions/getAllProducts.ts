@@ -18,12 +18,12 @@ export const getAllProducts: APIGatewayProxyHandler = async (event) => {
 		};
 	} catch (error) {
 		return {
-			statusCode: 500,
+			statusCode: 555,
 			headers: {
 				'Access-Control-Allow-Origin': '*',
 				'Access-Control-Allow-Credentials': true
 			},
-			body: JSON.stringify({ message: 'Unhandled error' })
+			body: JSON.stringify({ message: 'Something wrong with database' })
 		}
 	}
 }
