@@ -6,6 +6,7 @@ provider:
   stage: dev
   region: eu-west-1
 
+
   iamRoleStatements:
     - Effect: "Allow"
       Action: "sqs:*"
@@ -38,6 +39,10 @@ resources:
         Protocol: email
         TopicArn:
           Ref: SNSTopic
+        # FilterPolicy: 
+        #   title:
+        #     - String:
+        #       - "interest"
 
 custom:
   webpack:

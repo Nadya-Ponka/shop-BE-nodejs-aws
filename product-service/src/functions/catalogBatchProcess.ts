@@ -19,8 +19,8 @@ export const catalogBatchProcess = async (event) => {
 				TopicArn: process.env.SNS_ARN,
 				MessageAttributes: {
 					title: {
-						Data: 'String.Array',
-						Value: ["interest","Happiness"]
+						DataType: 'String.Array',
+						StringValue: ["interest","Happiness"]
 					}
 				}
 			}, () => {
@@ -30,4 +30,6 @@ export const catalogBatchProcess = async (event) => {
 			console.log('RECORD WAS NOT CREATED: ', record.body);
 		}
 	}
+	console.log('ARRAY: ', array);
+	return array;
 }
