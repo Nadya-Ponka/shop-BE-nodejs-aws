@@ -6,6 +6,9 @@ provider:
   stage: dev
   region: eu-west-1
   
+  environment:
+    SQS_URL: "https://sqs.eu-west-1.amazonaws.com/017577540508/catalogItemsQueue"
+
   iamRoleStatements:
     - Effect: "Allow"
       Action: "s3:ListBucket"
@@ -16,6 +19,10 @@ provider:
         - "s3:*"
       Resource:
         - "arn:aws:s3:::import-service-dev-serverlessdeploymentbucket-1twvr14t8nqk9/*"
+    - Effect: "Allow"
+      Action: "sqs:*"
+      Resource:
+        - "arn:aws:sqs:eu-west-1:017577540508:catalogItemsQueue"
 
 plugins:
   - serverless-offline

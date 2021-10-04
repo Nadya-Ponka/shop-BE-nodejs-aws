@@ -1,6 +1,6 @@
 'use strict'
 
-const AWS = require('aws-sdk');
+import AWS  from'aws-sdk';
 const BUCKET = 'import-service-dev-serverlessdeploymentbucket-1twvr14t8nqk9';
 
 export const importProductsFile = async (event) => {

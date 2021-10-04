@@ -12,9 +12,11 @@
   "dependencies": {
     "@middy/core": "^1.5.2",
     "@middy/http-json-body-parser": "^1.5.2",
+    "@types/pg": "^8.6.1",
     "aws-sdk": "^2.989.0",
     "csv-parser": "^3.0.0",
     "fs-extra": "^10.0.0",
+    "pg": "^8.7.1",
     "source-map-support": "^0.5.19"
   },
   "devDependencies": {

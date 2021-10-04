@@ -6,6 +6,14 @@ provider:
   stage: dev
   region: eu-west-1
 
+  environment:
+    ENV_STAGE: ${opt:stage, 'dev'}
+    PGPORT: 5432
+    SQS_URL: 
+      Ref: SQSQueue
+    SNS_ARN: 
+      Ref: SNSTopic
+
   iamRoleStatements:
     - Effect: "Allow"
       Action: "sqs:*"

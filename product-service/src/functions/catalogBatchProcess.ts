@@ -16,13 +16,7 @@ export const catalogBatchProcess = async (event) => {
 			sns.publish({
 				Subject: 'Product was created',
 				Message: JSON.stringify('Everithing is all right: ', array[array.length - 1], dataObject),
-				TopicArn: process.env.SNS_ARN,
-				MessageAttributes: {
-					title: {
-						Data: 'String.Array',
-						Value: ["interest","Happiness"]
-					}
-				}
+				TopicArn: process.env.SNS_ARN
 			}, () => {
 				console.log('SENDED SNS EMAIL: ');
 			});
@@ -30,4 +24,6 @@ export const catalogBatchProcess = async (event) => {
 			console.log('RECORD WAS NOT CREATED: ', record.body);
 		}
 	}
+	console.log('ARRAY: ', array);
+	return array;
 }
