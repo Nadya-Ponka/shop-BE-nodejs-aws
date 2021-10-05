@@ -1,7 +1,6 @@
 import { catalogBatchProcess } from './catalogBatchProcess'
 const AWS = require('aws-sdk');
 import * as createNewProductObject from './PostgresProductService';
-// import { createNewProduct } from './PostgresProductService';
 
 jest.mock('aws-sdk', () => {
 	const SNSMocked = {
@@ -13,7 +12,6 @@ jest.mock('aws-sdk', () => {
 		SNS: jest.fn(() => SNSMocked)
 	};
 });
-
 
 const mockedRecords = { "Records": [{body: JSON.stringify({ "title": "Adoration", "description": "Emotion of Adoration", "price": "9", "count": "4"})}] };
 const mockedResponse = { message: 'everithing is OK' };
