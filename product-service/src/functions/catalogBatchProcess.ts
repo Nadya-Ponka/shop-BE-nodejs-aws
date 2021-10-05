@@ -14,9 +14,15 @@ export const catalogBatchProcess = async (event) => {
 		if (dataObject.hasOwnProperty('title') && dataObject.hasOwnProperty('description') && dataObject.hasOwnProperty('price') && dataObject.hasOwnProperty('count')) {
 			array.push(await createNewProduct(dataObject));
 			sns.publish({
-				Subject: 'Product was created',
-				Message: JSON.stringify('Everithing is all right: ', array[array.length - 1], dataObject),
-				TopicArn: process.env.SNS_ARN
+				Subject: `Product ${JSON.stringify(dataObject)} was created`,
+				Message: JSON.stringify(`Everithing is all right: ${dataObject.title}`),
+				TopicArn: process.env.SNS_ARN,
+				MessageAttributes: {
+					title: {
+						DataType: 'String',
+						StringValue: `${dataObject.title}`
+					}
+				}
 			}, () => {
 				console.log('SENDED SNS EMAIL: ');
 			});

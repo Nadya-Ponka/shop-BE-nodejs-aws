@@ -6,16 +6,17 @@ provider:
   stage: dev
   region: eu-west-1
 
-<<<<<<< HEAD
   environment:
     ENV_STAGE: ${opt:stage, 'dev'}
+    PGHOST: emotions-shop-database-instance.cvpqf9qjedmk.eu-west-1.rds.amazonaws.com
+    PGUSER: postgres
+    PGDATABASE: emotions_shop_database
+    PGPASSWORD: ZIH9ALmECCdy2UPsMa93
     PGPORT: 5432
     SQS_URL: 
       Ref: SQSQueue
     SNS_ARN: 
       Ref: SNSTopic
-=======
->>>>>>> ae6eea4eec9323356e3750d209cc2e347c0234f3
 
   iamRoleStatements:
     - Effect: "Allow"
@@ -49,10 +50,9 @@ resources:
         Protocol: email
         TopicArn:
           Ref: SNSTopic
-        # FilterPolicy: 
-        #   title:
-        #     - String:
-        #       - "interest"
+        FilterPolicy: 
+          title:
+            - Interest
 
 custom:
   webpack:
