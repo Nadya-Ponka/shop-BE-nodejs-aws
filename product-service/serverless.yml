@@ -5,17 +5,59 @@ provider:
   runtime: nodejs12.x
   stage: dev
   region: eu-west-1
-  
+
+  environment:
+    ENV_STAGE: ${opt:stage, 'dev'}
+    PGHOST: emotions-shop-database-instance.cvpqf9qjedmk.eu-west-1.rds.amazonaws.com
+    PGUSER: postgres
+    PGDATABASE: emotions_shop_database
+    PGPASSWORD: ZIH9ALmECCdy2UPsMa93
+    PGPORT: 5432
+    SQS_URL: 
+      Ref: SQSQueue
+    SNS_ARN: 
+      Ref: SNSTopic
+
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action: "sqs:*"
+      Resource:
+        - Fn::GetAtt: [ SQSQueue, Arn ]
+    - Effect: "Allow"
+      Action: "sns:*"
+      Resource:
+        Ref: SNSTopic
+
 plugins:
   - serverless-webpack
   - serverless-offline
   - serverless-openapi-documentation
 
+resources:
+  Resources:
+    SQSQueue:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: catalogItemsQueue
+    SNSTopic:
+      Type: AWS::SNS::Topic
+      Properties:
+        TopicName: createProductTopic
+    SNSSubscription:
+      Type: AWS::SNS::Subscription
+      Properties:
+        Endpoint: ponkratova@tut.by
+        Protocol: email
+        TopicArn:
+          Ref: SNSTopic
+        FilterPolicy: 
+          title:
+            - Interest
+
 custom:
   webpack:
     webpackConfig: 'webpack.config.js'
     includeModules: true
-    dotenvVars: ${file(configs.js)}
   documentation:
     version: '1'
     title: 'Emotions shop backend'
@@ -96,3 +138,13 @@ functions:
           path: products
           method: post
           cors: true
+
+  catalogBatchProcess:
+    handler: handler.catalogBatchProcess
+    events:
+      - sqs:
+          batchSize: 5
+          arn: 
+            Fn::GetAtt:
+              - SQSQueue
+              - Arn

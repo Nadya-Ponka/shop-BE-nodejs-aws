@@ -2,17 +2,16 @@
 
 import { createNewProduct } from './PostgresProductService';
 
-import { APIGatewayProxyHandler } from 'aws-lambda';
-
-export const createProduct: APIGatewayProxyHandler = async (event) => {
-	console.log('CREATE PRODUCT EVENT: ', event);
+export const createProduct = async (event) => {
+	console.log('CREATE PRODUCT EVENT: ', JSON.parse(event.body));
 	let bodyResponse = { message: 'Product was NOT created' };
 	let statusCode: number = 404;
 
 	try {
 		const dataObject = JSON.parse(event.body);
-		
+		console.log('EVENT OBJECT: ', dataObject);
 		if (dataObject.hasOwnProperty('title') && dataObject.hasOwnProperty('description') && dataObject.hasOwnProperty('price') && dataObject.hasOwnProperty('count')) {
+			console.log('WE ARE HERE');
 			const response = await createNewProduct(dataObject);
 			bodyResponse = response;
 			statusCode = 200;

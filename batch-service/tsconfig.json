@@ -1,7 +1,7 @@
 {
   "extends": "./tsconfig.paths.json",
   "compilerOptions": {
-    "lib": ["ESNext","DOM"],
+    "lib": ["ESNext","DOM","ES2017","es2015","es2016"],
     "moduleResolution": "node",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
@@ -11,7 +11,7 @@
     "outDir": "lib",
     "esModuleInterop": true
   },
-  "include": ["src/**/*.ts", "serverless.ts", "handler.ts", "src/functions/getProductById.test.js", "src/functions/catalogBatchProcess.test.js"],
+  "include": ["src/**/*.ts", "serverless.ts", "handler.ts"],
   "exclude": [
     "node_modules/**/*",
     ".serverless/**/*",
