@@ -14,10 +14,15 @@
     "@middy/http-json-body-parser": "^1.5.2",
     "@types/isomorphic-fetch": "0.0.35",
     "@types/pg": "^8.6.1",
+    "asynckit": "^0.4.0",
     "aws-sdk": "^2.989.0",
+    "combined-stream": "^1.0.8",
+    "delayed-stream": "^1.0.0",
+    "fs-extra": "^10.0.0",
     "isomorphic-fetch": "^3.0.0",
     "pg": "^8.7.1",
-    "source-map-support": "^0.5.19"
+    "source-map-support": "^0.5.19",
+    "superagent": "^6.1.0"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.15.6",
@@ -28,7 +33,7 @@
     "aws-sdk-mock": "^5.4.0",
     "jest": "^27.0.6",
     "json-schema-to-ts": "^1.5.0",
-    "serverless": "^2.55.0",
+    "serverless": "^2.63.0",
     "serverless-offline": "^8.0.0",
     "serverless-openapi-documentation": "^0.4.0",
     "serverless-webpack": "^5.3.5",
