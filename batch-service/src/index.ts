@@ -1,1 +1,0 @@
-export { catalogBatchProcess } from './functions/catalogBatchProcess';

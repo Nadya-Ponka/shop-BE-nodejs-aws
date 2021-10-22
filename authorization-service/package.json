@@ -1,5 +1,5 @@
 {
-  "name": "import-service",
+  "name": "product-service",
   "version": "1.0.0",
   "description": "Serverless aws-nodejs-typescript template",
   "main": "serverless.ts",
@@ -15,8 +15,6 @@
     "@types/isomorphic-fetch": "0.0.35",
     "@types/pg": "^8.6.1",
     "aws-sdk": "^2.989.0",
-    "csv-parser": "^3.0.0",
-    "fs-extra": "^10.0.0",
     "isomorphic-fetch": "^3.0.0",
     "pg": "^8.7.1",
     "source-map-support": "^0.5.19"
@@ -27,10 +25,11 @@
     "@serverless/typescript": "^2.23.0",
     "@types/aws-lambda": "^8.10.71",
     "@types/node": "^14.14.25",
-    "aws-sdk-mock": "^5.3.0",
+    "aws-sdk-mock": "^5.4.0",
     "jest": "^27.0.6",
     "json-schema-to-ts": "^1.5.0",
     "serverless": "^2.55.0",
+    "serverless-dotenv-plugin": "^3.10.0",
     "serverless-offline": "^8.0.0",
     "serverless-openapi-documentation": "^0.4.0",
     "serverless-webpack": "^5.3.5",

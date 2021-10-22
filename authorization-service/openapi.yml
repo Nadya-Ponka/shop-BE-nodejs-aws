@@ -1,0 +1,35 @@
+openapi: 3.0.0
+components:
+  schemas:
+    GetProductRequest:
+      properties:
+        SomeObject:
+          type: object
+          properties:
+            SomeAttribute:
+              type: string
+    GetAllProductsRequest:
+      properties:
+        SomeObject:
+          type: object
+          properties:
+            SomeAttribute:
+              type: string
+  securitySchemes: {}
+info:
+  title: Emotions shop backend
+  description: Emotions shop backend documentation
+  version: '1'
+paths:
+  '/products/{productId}':
+    get:
+      operationId: getProductById
+      summary: Get product by Id from the products list
+      description: Get product by Id from the products list
+      responses:
+        '200':
+          description: A product along with passed id
+          content: {}
+        '500':
+          description: An error message 'Product not found'
+          content: {}
